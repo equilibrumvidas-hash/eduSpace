@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Course — EduSpace</title>
+
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="../index.html" class="logo">
+        Edu<span>Space</span>
+    </a>
+
+    <nav class="nav-links">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="courses.html">
+            Courses
+        </a>
+
+        <a href="lessons.html">
+            Lessons
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+<section class="section">
+
+    <span
+        id="courseCategory"
+        class="section-label"
+    >
+        COURSE
+    </span>
+
+    <h1
+        id="courseTitle"
+        style="
+            font-size: clamp(45px, 7vw, 80px);
+            margin-top: 15px;
+            letter-spacing: -4px;
+        "
+    >
+        Loading...
+    </h1>
+
+    <p
+        id="courseDescription"
+        style="
+            max-width: 700px;
+            margin-top: 25px;
+            color: #94a3b8;
+            line-height: 1.8;
+        "
+    ></p>
+
+
+    <div
+        style="
+            margin-top: 50px;
+            max-width: 1000px;
+        "
+    >
+
+        <div
+            style="
+                aspect-ratio: 16 / 9;
+                border-radius: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background:
+                    linear-gradient(
+                        135deg,
+                        #172554,
+                        #312e81
+                    );
+                border:
+                    1px solid
+                    rgba(255,255,255,0.1);
+                font-size: 70px;
+            "
+        >
+            ▶
+        </div>
+
+    </div>
+
+
+    <div
+        id="courseLessons"
+        style="
+            margin-top: 60px;
+        "
+    >
+
+        <h2>
+            Course Lessons
+        </h2>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<script src="../data/courses.js"></script>
+
+<script>
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const courseId =
+        Number(params.get("id")) || 1;
+
+    const course =
+        courses.find(
+            item => item.id === courseId
+        );
+
+    if (course) {
+
+        document.getElementById(
+            "courseCategory"
+        ).textContent =
+            course.category;
+
+        document.getElementById(
+            "courseTitle"
+        ).textContent =
+            course.title;
+
+        document.getElementById(
+            "courseDescription"
+        ).textContent =
+            course.description;
+
+        const lessons =
+            document.getElementById(
+                "courseLessons"
+            );
+
+        lessons.innerHTML = `
+
+            <h2>
+                Course Lessons
+            </h2>
+
+            <div style="
+                margin-top: 25px;
+                display: grid;
+                gap: 10px;
+            ">
+
+                ${Array.from(
+                    { length: course.lessons },
+                    (_, index) => `
+
+                    <a
+                        href="lessons.html?course=${course.id}&lesson=${index + 1}"
+                        style="
+                            padding: 20px;
+                            border-radius: 14px;
+                            background:
+                                rgba(255,255,255,0.04);
+                            border:
+                                1px solid
+                                rgba(255,255,255,0.07);
+                        "
+                    >
+                        Lesson ${index + 1}
+                    </a>
+
+                `
+                ).join("")}
+
+            </div>
+        `;
+
+    }
+
+</script>
+
+</body>
+</html>

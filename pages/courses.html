@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Courses — EduSpace</title>
+
+    <link
+        rel="stylesheet"
+        href="../style.css"
+    >
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="../index.html" class="logo">
+        Edu<span>Space</span>
+    </a>
+
+    <nav class="nav-links">
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="courses.html" class="active">
+            Courses
+        </a>
+
+        <a href="lessons.html">
+            Lessons
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+    </nav>
+
+    <div class="nav-actions">
+
+        <a
+            href="upload.html"
+            class="upload-link"
+        >
+            + Upload
+        </a>
+
+        <button class="login-btn">
+            Login
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="section">
+
+        <span class="section-label">
+            EXPLORE
+        </span>
+
+        <h1
+            style="
+                font-size: clamp(45px, 7vw, 80px);
+                margin-top: 15px;
+                letter-spacing: -4px;
+            "
+        >
+            Find your next
+            <span
+                style="
+                    color: #38bdf8;
+                "
+            >
+                skill.
+            </span>
+        </h1>
+
+        <p
+            style="
+                max-width: 650px;
+                color: #94a3b8;
+                line-height: 1.8;
+                margin-top: 20px;
+            "
+        >
+            Explore courses created to help you
+            learn practical skills and build real projects.
+        </p>
+
+        <div
+            id="allCourses"
+            class="course-grid"
+            style="margin-top: 60px;"
+        >
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 EduSpace
+        </span>
+
+        <span>
+            Learn. Build. Create.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="../data/courses.js"></script>
+
+<script>
+
+    const container =
+        document.getElementById("allCourses");
+
+    container.innerHTML =
+        courses
+            .map(course => `
+
+                <article class="course-card">
+
+                    <div
+                        class="course-image course-${course.color}"
+                    >
+                        <span>
+                            ${course.icon}
+                        </span>
+                    </div>
+
+                    <div class="course-content">
+
+                        <span class="category">
+                            ${course.category}
+                        </span>
+
+                        <h3>
+                            ${course.title}
+                        </h3>
+
+                        <p>
+                            ${course.description}
+                        </p>
+
+                        <div class="course-meta">
+
+                            <span>
+                                ${course.lessons} lessons
+                            </span>
+
+                            <span>
+                                ${course.duration}
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="course.html?id=${course.id}"
+                            class="course-link"
+                        >
+                            View course →
+                        </a>
+
+                    </div>
+
+                </article>
+
+            `)
+            .join("");
+
+</script>
+
+</body>
+</html>
